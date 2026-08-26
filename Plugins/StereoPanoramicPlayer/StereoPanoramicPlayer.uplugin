@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 10,
+	"VersionName": "1.2.3",
+	"FriendlyName": "Stereo Panoramic Player",
+	"Description": "Complete solution to quickly integrate an interactive, customizable player for 360 panoramic images and videos, supporting both mono and stereo media sources.",
+	"Category": "Media Players",
+	"CreatedBy": "UNAmedia",
+	"CreatedByURL": "https://www.unamedia.com",
+	"DocsURL": "https://www.unamedia.com/ue5-stereo-panoramic-player/api",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/8b12fdd4020e413dade4cf3bba4a9ed2",
+	"SupportURL": "https://www.unamedia.com/ue5-stereo-panoramic-player",
+	"EngineVersion": "5.3.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "StereoPanoramicPlayer",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ProceduralMeshComponent",
+			"Enabled": true
+		},
+		{
+			"Name": "XRBase",
+			"Enabled": true
+		}
+	]
+}

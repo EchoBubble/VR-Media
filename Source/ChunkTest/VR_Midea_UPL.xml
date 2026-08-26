@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        这些 import 会在 Android 打包时被插入 UE 生成的 GameActivity.java。
+        Settings 用于读取头显的设备名称；Intent/Log 用于通知 Beacon 管理程序。
+    -->
+    <gameActivityImportAdditions>
+        <insert>
+import android.provider.Settings;
+import android.content.Intent;
+        </insert>
+    </gameActivityImportAdditions>
+
+    <gameActivityClassAdditions>
+        <insert><![CDATA[
+
+    // 读取 Android 系统中设置的设备名称，例如 02、T0、T1。
+    // C++ 中的 GetPlatformDeviceId() 会通过 JNI 调用这个方法。
+    public String AndroidThunkJava_GetAndroidDeviceName()
+    {
+        String deviceName = Settings.Global.getString(
+            getContentResolver(),
+            Settings.Global.DEVICE_NAME
+        );
+
+        return deviceName == null ? "" : deviceName.trim();
+    }
+
+    // 通知头显里的 Beacon 管理程序：当前 VR 播放程序即将关闭。
+    // 广播内容与同事提供的协议保持一致：
+    // package = com.basefount.beacon
+    // action  = com.basefount.beacon.action
+    // message = Close
+    public boolean AndroidThunkJava_SendBeaconCloseBroadcast()
+    {
+        try
+        {
+            Intent intent = new Intent("com.basefount.beacon.action");
+            intent.setPackage("com.basefount.beacon");
+            intent.putExtra("message", "Close");
+            sendBroadcast(intent);
+
+			android.util.Log.i(
+				"UE",
+				"[VREXIT] Beacon Close broadcast sent."
+			);
+            return true;
+        }
+        catch (Exception exception)
+        {
+            android.util.Log.e(
+				"UE",
+				"[VREXIT] Failed to send Beacon Close broadcast.",
+				exception
+			);
+            return false;
+        }
+    }
+
+        ]]></insert>
+    </gameActivityClassAdditions>
+
+</root>

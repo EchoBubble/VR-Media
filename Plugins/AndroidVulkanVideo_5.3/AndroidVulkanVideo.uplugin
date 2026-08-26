@@ -1,0 +1,74 @@
+{
+	"FileVersion": 3,
+	"Version": 23,
+	"VersionName": "v3.11",
+	"FriendlyName": "DirectVideo Android",
+	"Description": "Android video playback using Vulkan",
+	"Category": "",
+	"CreatedBy": "Joe Marshall",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/342ae80f4bc04e4aa232991047532ff2",
+	"SupportURL": "https://joemarshall.github.io/directvideo/",
+	"EngineVersion": "5.3.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"SupportedTargetPlatforms": [
+		"Win64",
+		"Android"
+	],
+	"Modules": [
+		{
+			"Name": "AndroidVulkanVideo",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit",
+			"PlatformAllowList": [
+				"Android"
+			],
+			"TargetAllowList": [
+				"Game",
+				"Client"
+			]
+		},
+		{
+			"Name": "VulkanVideoMeshComponent",
+			"Type": "RuntimeNoCommandlet",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Android"
+			],
+			"TargetAllowList": [
+				"Game",
+				"Editor",
+				"Client",
+				"Server"
+			],
+			"HasExplicitPlatforms": true
+		},
+		{
+			"Name": "AndroidVulkanVideoFactory",
+			"Type": "RuntimeNoCommandlet",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Android"
+			],
+			"TargetAllowList": [
+				"Game",
+				"Editor",
+				"Client",
+				"Server"
+			],
+			"HasExplicitPlatforms": true
+		},
+		{
+			"Name": "AndroidVulkanVideoFactory",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		},
+		{
+			"Name": "VulkanVideoMeshComponent",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		}
+	]
+}
